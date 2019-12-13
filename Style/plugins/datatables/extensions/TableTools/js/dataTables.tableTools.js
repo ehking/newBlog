@@ -2947,7 +2947,7 @@ TableTools.BUTTONS = {
 	} ),
 
 	"select_all": $.extend( {}, TableTools.buttonBase, {
-		"sButtonText": "Select all",
+		"sButtonText": "انتخاب همه",
 		"fnClick": function( nButton, oConfig ) {
 			this.fnSelectAll();
 		},
@@ -2961,7 +2961,7 @@ TableTools.BUTTONS = {
 	} ),
 
 	"select_none": $.extend( {}, TableTools.buttonBase, {
-		"sButtonText": "Deselect all",
+		"sButtonText": "غیر فعال سازی همه",
 		"fnClick": function( nButton, oConfig ) {
 			this.fnSelectNone();
 		},

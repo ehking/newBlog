@@ -160,7 +160,7 @@ a{color:inherit;text-decoration:none}
  * Licensed under MIT
  * ======================================================================== */
 .checkbox label .toggle,.checkbox-inline .toggle{margin-left:-20px;margin-right:5px}
-.toggle{position:relative;overflow:hidden}
+.toggle{position:relative;overflow:hidden;float: left}
 .toggle input[type=checkbox]{display:none}
 .toggle-group{position:absolute;width:200%;top:0;bottom:0;left:0;transition:left .35s;-webkit-transition:left .35s;-moz-user-select:none;-webkit-user-select:none}
 .toggle.off .toggle-group{left:-100%}

@@ -17,6 +17,8 @@
     <!-- template rtl version -->
     <link rel="stylesheet" href="../../../Style/dist/css/custom-style.css">
     <link rel="stylesheet" href="../../../Style/Style.css">
+    <link rel="stylesheet" href="../../../Style/dist/css/jquery.multiselect.css">
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/css/mdb.min.css">-->
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -210,7 +212,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../UI/icons.html" class="nav-link">
+                                    <a href="/admin/permission" class="nav-link">
                                         <i class="fa fa-circle-o nav-icon"></i>
                                         <p>سطح دسترسی ها</p>
                                     </a>

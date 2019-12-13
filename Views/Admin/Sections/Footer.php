@@ -12,8 +12,12 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
+<script
+
+
 <script src="../../../Style/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
+
+
 <script src="../../../Style/bootstrap.min.js"></script>
 <!-- SlimScroll -->
 <script src="../../../Style/plugins/slimScroll/jquery.slimscroll.min.js"></script>
@@ -29,6 +33,10 @@
 
 <script src="../../../Style/plugins/datatables/jquery.dataTables.js"></script>
 <script src="../../../Style/plugins/datatables/dataTables.bootstrap4.js"></script>
+<script src="../../../Style/dist/js/jquery.multiselect.js"></script>
+<script src="../../../Style/dist/js/val.js"></script>
+
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/js/mdb.min.js"></script>-->
 
 <?php
 

@@ -51,18 +51,17 @@
                             </thead>
                             <tbody>
                             <?php
-                            if($roles){
-                                foreach ($roles as $role){
+                            if($permissions){
+                                foreach ($permissions as $permission){
                                     echo "<tr>";
-                                    echo "<td>".$role['id']."</td>";
-                                    echo "<td>".$role['name']."</td>";
-                                    echo "<td>".$role['display_name']."</td>";
-                                    echo $role['status']==1 ? '<td><span class="badge badge-success">فعال</span></td>':'<td><span class="badge badge-danger">غیرفعال</span></td>';
-                                    echo "<td>".$role['Des']."</td>";
-                                        echo "<td style='text-align: center'><button class='btn btn-danger' name='".$role['id']."' onclick='del(this)'><i class='fa fa-close'></i>  حذف </button>
-                                          <a href='/admin/editerole/".$role['id']."'><button class='btn  btn-warning'> <i class='fa fa-edit'></i>  ویرایش </button></a>";
+                                    echo "<td>".$permission['id']."</td>";
+                                    echo "<td>".$permission['name']."</td>";
+                                    echo "<td>".$permission['display_name']."</td>";
+                                    echo $permission['status']==1 ? '<td><span class="badge badge-success">فعال</span></td>':'<td><span class="badge badge-danger">غیرفعال</span></td>';
+                                    echo "<td>".$permission['Des']."</td>";
+                                        echo "<td style='text-align: center'><button class='btn btn-danger' name='".$permission['id']."' onclick='del(this)'><i class='fa fa-close'></i>  حذف </button>
+                                          <a href='/admin/editerole/".$permission['id']."'><button class='btn  btn-warning'> <i class='fa fa-edit'></i>  ویرایش </button></a>";
                                     echo "</tr>";
-
                                 }
                             }
 
