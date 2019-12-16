@@ -30,7 +30,7 @@
     <hr class="w3-border-white w3-animate-left" style="margin:auto;width:50%">
     <h3 class="w3-center w3-animate-right">همچین صفحه ای پیدا نشد</h3>
     <br>
-    <a href="https://www.w3schools.com" class="w3-button w3-block w3-white w3-animate-zoom">بازگشت به صفحه ی اصلی</a>
+    <a href="/" class="w3-button w3-block w3-white w3-animate-zoom">بازگشت به صفحه ی اصلی</a>
 </div>
 </body>
 </html>

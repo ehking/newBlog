@@ -1,93 +1,98 @@
-<?php require_once("Sections/Header.php");?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../Style/bootstrap.min.css">
+    <link rel="stylesheet" href="../Style/dist/css/custom-style.css">
+    <title>صفحه ورود</title>
+</head>
+<body>
 
-    <div class="login-wrap">
-        <div class="login-html">
-            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Login</label>
-            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Register</label>
-            <div class="login-form">
-                <form action="Login.php" method="post">
-                <div class="sign-in-htm">
-                    <div class="group">
-                        <label for="user" class="label">Username</label>
-                        <input id="user" type="text" name="user_name" class="input">
-                    </div>
-                    <div class="group">
-                        <label for="pass" class="label">Password</label>
-                        <input id="pass" type="password" name="password" class="input" data-type="password">
-                    </div>
-                    <div class="group">
-                        <input id="check" type="checkbox" name="check" class="check" checked>
-                        <label for="check"><span class="icon"></span> Keep me Signed in</label>
-                    </div>
-                    <hr>
-                    <div class="group">
-                      <h3>Please click the register button at the top of the screen to make it a profile.
-                      </h3>
-                    </div>
-                    <hr>
-                    <div class="group">
-                        <input type="submit" class="button" value="Sign In">
-                    </div>
-                    <div class="hr"></div>
-                    <div class="foot-lnk">
-                        <a href="#forgot">Forgot Password?</a>
-                    </div>
-                </div>
-                </form>
-                <?php if(! is_null($status) ) : ?>
-                    <div class="alert alert-danger">
-                        <?= $status ?>
-                    </div>
-                <?php endif; ?>
-                <form action="Register.php" method="post">
-                <div class="sign-up-htm">
-                    <div class="group">
-                        <label for="user" class="label">Name</label>
-                        <input id="user" type="text" name="name" class="input">
-                    </div>
-                    <div class="group">
-                        <label for="user" class="label">LastName</label>
-                        <input id="user" type="text" name="last_name" class="input">
-                    </div>
-                    <div class="group">
-                        <label for="user" class="label">MelliCode</label>
-                        <input id="user" type="text" name="user_name" class="input">
-                    </div>
-                    <div class="group">
-                        <label for="user" class="label">PhoneNumber</label>
-                        <input id="user" type="text" name="phone_number" class="input">
-                    </div>
-                    <div class="group">
-                        <label for="pass" class="label">Password</label>
-                        <input id="pass" type="password" name="password" class="input" data-type="password">
-                    </div>
-                    <div class="group">
-                        <label for="pass" class="label">RepeatPassword</label>
-                        <input id="pass" type="password" name="repeat_password" class="input" data-type="password">
-                    </div>
-                    <div class="group">
-                        <label for="pass" class="label">EmailAddress</label>
-                        <input id="pass" type="text" name="email" class="input">
-                    </div>
-                    <hr>
-                    <div class="group">
-                        <input type="submit" class="button" value="Save">
-                    </div>
-                    <div class="hr"></div>
-                    <div class="foot-lnk">
-                        <label for="tab-1">Already Member?</label>
-                    </div>
-                </div>
-                </form>
-                <?php if(! is_null($status) ) : ?>
-                    <div class="alert alert-danger">
+<style>
 
-                        <?= $status ?>
-                    </div>
-                <?php endif; ?>
+    html, body {
+        height: 100%;
+    }
+    body {
+        margin: 0;
+    }
+    .container {
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .loginWrapper {
+        width: 450px;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255,255,255,.75);
+        border-radius: 8px;
+
+    }
+    .loginWrapper:after {
+        background: url(../Style/img/sunset-1920x1080-bear-deer-8k-19715.jpg);
+        content: "";
+        opacity: 0.75;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        z-index: -1;
+        background-position: bottom;
+    }
+    form {
+        width: 100%;
+        padding: 30px;
+    }
+</style>
+<div class="container">
+    <div class="loginWrapper">
+
+        <form class="form-horizontal" role="form" action="/login" method="post">
+            <h3 style="text-align: center">صفحه ورود <i class="fa"></i></h3>
+            <div class="form-group">
+                <label for="username" class="control-label col-sm-12 text-right">نام کاربری:</label>
+                <div class="input-group col-sm-12">
+                    <span class="input-group-addon glyphicon glyphicon-user"></span>
+                    <input type="text" id="username" placeholder="username"  name="username" class="form-control" />
+                </div>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="password" class="control-label col-sm-12 text-right">گذرواژه:</label>
+                <div class="input-group col-sm-12">
+                    <span class="input-group-addon glyphicon glyphicon-lock"></span>
+                    <input type="password" id="password" placeholder="password"  name="password" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group col-sm-offset-3 col-sm-12">
+                    <button type="submit" class="btn btn-block btn-success">ورود</button>
+                </div>
+            </div>
+        </form>
     </div>
+</div>
+<script src="../Style/sw/sw.js"></script>
+<?php
 
-
-<?php require_once("Sections/Footer.php");?>
+if(isset($_SESSION['alert'])){
+    echo "<script>
+Swal.fire({
+  icon: '".$_SESSION['alert']['icon']."',
+  title: '".$_SESSION['alert']['title']."',
+  text: '".$_SESSION['alert']['msg']."',
+  confirmButtonText: 'فهمیدم',
+})
+</script>";
+    unset($_SESSION['alert']);
+}
+?>
+</body>
+</html>

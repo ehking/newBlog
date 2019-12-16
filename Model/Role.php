@@ -32,6 +32,21 @@ class  Role
     }
 
 
+
+    public static  function role_user($userid) {
+        $sql = "SELECT t1.role_id, t2.name FROM  role_user as t1
+                JOIN roles as t2 ON t1.role_id = t2.id
+                WHERE t1.user_id = :user_id";
+        $conn = ConnectToDB();
+        $sth = $conn->prepare($sql);
+        $sth->execute(array(":user_id" => $userid));
+        $role_user=array();
+        while($row = $sth->fetch(PDO::FETCH_ASSOC)) {
+            $role_user[$row["name"]] =true;
+        }
+        return $role_user;
+
+    }
     public static function get_all()
     {
         $conn = ConnectToDB();
@@ -52,6 +67,26 @@ class  Role
         $sql->bindParam("status", $status);
         $sql->execute();
         return $sql->errorCode();
+    }
+    public  static  function edite_roleuser($user,$role){
+        $sql = "delete  FROM  role_user WHERE user_id = :userd";
+        $conn = ConnectToDB();
+        $sth = $conn->prepare($sql);
+        $sth->execute(array(":userd" => $user));
+
+        $stmt = $conn->prepare("INSERT INTO role_user (user_id, role_id) VALUES ('$user',:roles)");
+        try {
+            $conn->beginTransaction();
+            foreach ($role as $row)
+            {
+                $stmt->execute(array(":roles" => $row));
+            }
+            $conn->commit();
+            return true;
+        }catch (Exception $e){
+            $conn->rollback();
+            return false;
+        }
     }
 
     public static function del_role($id)

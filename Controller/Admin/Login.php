@@ -1,32 +1,36 @@
 <?php
 
 
-//AuthLogout();
-$status=null;
-
-if(IsPost()){
-    extract($_POST);
-    if(validation_required([$user_name,$password])){
-        $password=  hash_hmac("sha256", $password ,"secert");
-         $conn=ConnectToDB();
-        $user=userGet($user_name,$conn);
-        if($user){
-
-          //  var_dump([$user]);
-//            echo "<br>" , $user->full_name;
-
-            if($password == $user->password){
-                if($check==true){
-                    setcookie("user_name" , $user_name , time()+ 60*60*24);
-                    setcookie("password" , $password , time()+60*60*24);
+if (!isset( $_SESSION['user_id'] )) {
+    if (IsPost()) {
+        extract( $_POST );
+        if (validation_required( [$username, $password] )) {
+             $password = hash_hmac( "sha256", $password, "secert" );
+            $conn = ConnectToDB();
+            $user = userGet( $username );
+            if ($user) {
+                if ($password == $user['password']) {
+                    setcookie( "user_name", $username, time() + 60 * 60 * 24 );
+                    setcookie( "user_id", $user['id'], time() + 60 * 60 * 24 );
+                    $_SESSION["user_name"] = $username;
+                    $_SESSION["user_id"] = $user['id'];
+                    redirect( "/" );
+                } else {
+                    alert( "خطا", "نام کاربری یا پسورد شما اشتباه میباشد!!!", "error" );
+                    redirect( '/login' );
                 }
-                $_SESSION["user_name"] = $user_name;
-                redirect("personal_page.php");
+            } else {
+                alert( "خطا", "نام کاربری در سیستم وجود ندارد!!!", "error" );
+                redirect( '/login' );
             }
-        }else {
-            $status="this UserName not exists";
+        } else {
+            alert( "خطا", "فیلد های مورد نظر را پر کنید!!!", "error" );
+            redirect( '/login' );
         }
+    } else {
+        require_once("Views/Login.View.php");
     }
+}else{
+    redirect( "/admin/" );
 }
 
-require_once("Views/Login.View.php");

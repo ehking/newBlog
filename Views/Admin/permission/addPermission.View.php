@@ -33,11 +33,9 @@
 <!--                </div>-->
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" method="post" action="/admin/addrole">
+                <form class="form-horizontal" method="post" action="/admin/addpermission">
                     <div class="card-body">
-                        <div class="form-group">
-                            <input type="checkbox" checked data-toggle="toggle"  name="status" data-onstyle="success" data-offstyle="danger" data-on="<i class='fa fa-check'></i> فعال" data-off="<i class='fa fa-times'></i> غیرفعال">
-                        </div>
+
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">نام دسترسی</label>
                             <div class="col-sm-10">

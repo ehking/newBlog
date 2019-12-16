@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>صفحه خالی</h1>
+                    <h1>گروه های دسترسی</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-left">
                         <li class="breadcrumb-item"><a href="#">خانه</a></li>
-                        <li class="breadcrumb-item active">صفحه خالی</li>
+                        <li class="breadcrumb-item active">گروه های دسترسی </li>
                     </ol>
                 </div>
             </div>
@@ -93,22 +93,22 @@
 
        function  del(ob){
            Swal.fire({
-               title: ' انا حذف!!!!!',
-               text: 'داداش آیا موخوای حذف بشه نکن این کارارو, خطرناکه حسن!!!',
+               title: ' حذفش بکنم؟؟',
+               text: 'آیا از حذف داده مورد نظر مطمين هستی؟؟؟',
                icon: 'warning',
                showCancelButton: true,
                confirmButtonColor: '#3085d6',
                cancelButtonColor: '#d33',
-               cancelButtonText:"نع نموخوام",
-               confirmButtonText: 'ارع بابا'
+               cancelButtonText:"انصراف",
+               confirmButtonText: 'آرع حذفش کن'
            }).then((result) => {
                if (result.value) {
                    $.ajax({
                        url: "/admin/delrole/"+ob.name,
                    }).done(function() {
                        Swal.fire(
-                           'حذف',
-                           'خیالت راحت شد حذف شد',
+                           'حذف شد ',
+                           'با موفقیت حذف شد',
                            'success'
                        ).then((result)=>{
                            document.location.reload(true);

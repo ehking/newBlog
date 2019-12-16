@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>سطح دسترسی ها</h1>
+                    <h1>کاربران</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-left">
                         <li class="breadcrumb-item"><a href="#">خانه</a></li>
-                        <li class="breadcrumb-item active">سطح دسترسی ها</li>
+                        <li class="breadcrumb-item active">کاربران</li>
                     </ol>
                 </div>
             </div>
@@ -27,9 +27,9 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">سطح دسترسی ها</h3>
+                <h3 class="card-title">کاربران</h3>
 
-                <a href="/admin/addpermission" ><button class="btn btn-primary float-left">اضافه کردن سطح دسترسی </button></a>
+                <a href="/admin/addusers" ><button class="btn btn-primary float-left">اضافه کردن کاربر</button></a>
             </div>
 
             <div class="card-body">
@@ -42,28 +42,29 @@
                             <thead>
                             <tr>
                                 <th>شماره</th>
-                                <th>نام </th>
-                                <th>نام دسترسی</th>
-                                <th>توضیحات</th>
+                                <th>نام کاربری </th>
+                                <th>نام کامل</th>
+                                <th>شماره تماس</th>
+                                <th> ایمیل</th>
                                 <th>#</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php
-                            if($permissions){
-                                foreach ($permissions as $permission){
+                            if($users){
+                                foreach ($users as $user){
                                     echo "<tr>";
-                                    echo "<td>".$permission['id']."</td>";
-                                    echo "<td>".$permission['name']."</td>";
-                                    echo "<td>".$permission['dispaly_name']."</td>";
+                                    echo "<td>".$user['id']."</td>";
+                                    echo "<td>".$user['user_name']."</td>";
+                                    echo "<td>".$user['full_name']."</td>";
 
-                                    echo "<td>".$permission['des']."</td>";
-                                        echo "<td style='text-align: center'><button class='btn btn-danger' name='".$permission['id']."' onclick='del(this)'><i class='fa fa-close'></i>  حذف </button>
-                                          <a href='/admin/editepermission/".$permission['id']."'><button class='btn  btn-warning'> <i class='fa fa-edit'></i>  ویرایش </button></a>";
+                                    echo "<td>".$user['phone_number']."</td>";
+                                    echo "<td>".$user['email']."</td>";
+                                        echo "<td style='text-align: center'><button class='btn btn-danger' name='".$user['id']."' onclick='del(this)'><i class='fa fa-close'></i>  حذف </button>
+                                          <a href='/admin/editeuser/".$user['id']."'><button class='btn  btn-warning'> <i class='fa fa-edit'></i>  ویرایش </button></a>";
                                     echo "</tr>";
                                 }
                             }
-
                             ?>
 
                             </tbody>
@@ -102,7 +103,7 @@
            }).then((result) => {
                if (result.value) {
                    $.ajax({
-                       url: "/admin/delpermission/"+ob.name,
+                       url: "/admin/deluser/"+ob.name,
                    }).done(function() {
                        Swal.fire(
                            'حذف شد ',

@@ -3,18 +3,18 @@
 class  Permission
 {
 
-    private $roles;
+    public $roles;
     public  $user_id;
 
     public static function getByUsername($userid) {
-        $sql = "SELECT * FROM users WHERE id = :username";
+        $sql = "SELECT id FROM users WHERE id = :userid";
         $conn = ConnectToDB();
         $sth = $conn->prepare($sql);
-        $sth->execute(array(":username" => $userid));
+        $sth->execute(array(":userid" => $userid));
         $result = $sth->fetchAll();
         if (!empty($result)) {
             $Permission = new Permission();
-            $Permission->user_id = $result[0]["id"];
+            $Permission->user_id = $userid;
             $Permission->initRoles();
             return $Permission;
         } else {
@@ -29,10 +29,22 @@ class  Permission
         $conn = ConnectToDB();
         $sth = $conn->prepare($sql);
         $sth->execute(array(":user_id" => $this->user_id));
+
         while($row = $sth->fetch(PDO::FETCH_ASSOC)) {
             $this->roles[$row["name"]] = Role::getRolePerms($row["role_id"]);
         }
 
+    }
+
+
+    public function __HasPermission($perm)
+    {
+        foreach ($this->roles as $role) {
+            if ($role->hasPerm($perm)) {
+                return true;
+            }
+        }
+        return false;
     }
     public  static  function edite_roleper($role_id,$per){
         $sql = "delete  FROM  permission_role 
@@ -57,16 +69,52 @@ class  Permission
     }
 
 
-    // check if user has a specific privilege
-    public function __HasPermission($perm) {
-        foreach ($this->roles as $role) {
-            if ($role->hasPerm($perm)) {
-                return true;
-            }
-        }
-        return false;
+
+    public static function insert_Permission($name, $display_name, $des)
+    {
+        $conn = ConnectToDB();
+        $sql = $conn->prepare('insert into permissions (name,dispaly_name,Des) values (:name,:display_name,:Des)');
+        $sql->bindParam(":name", $name);
+        $sql->bindParam(":display_name", $display_name);
+        $sql->bindParam(":Des", $des);
+        $sql->execute();
+        return $sql->errorCode();
     }
 
+    public static function edit_Permission($id, $name, $display_name, $des)
+    {
+        $conn = ConnectToDB();
+        $sql = $conn->prepare('update permissions set name=:name ,dispaly_name=:display_name,Des=:Des where id=:id');
+        $sql->bindParam("id", $id);
+        $sql->bindParam("name", $name);
+        $sql->bindParam("display_name", $display_name);
+        $sql->bindParam("Des", $des);
+        $sql->execute();
+        return $sql->errorCode();
+    }
+
+    public static function get_Permission($id)
+    {
+        $conn = ConnectToDB();
+        $sql = $conn->prepare('select * from permissions where id=:id limit 1');
+        $sql->bindParam('id', $id);
+        $sql->execute();
+        $permissions = $sql->fetch(PDO::FETCH_ASSOC);
+        if ($sql->rowCount() > 0) {
+            return $permissions;
+        } else {
+            return false;
+        }
+
+    }
+    public static function del_Permission($id)
+    {
+        $conn = ConnectToDB();
+        $sql = $conn->prepare('DELETE FROM permissions where id=:id');
+        $sql->bindParam("id", $id);
+        $sql->execute();
+        return $sql->errorCode();
+    }
 
     public static   function get_all_per()
     {

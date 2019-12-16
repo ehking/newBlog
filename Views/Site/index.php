@@ -8,15 +8,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Freelancer - Start Bootstrap Theme</title>
+    <title>سایت اصلی</title>
 
     <!-- Custom fonts for this theme -->
     <link href="../../Style/site/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
 
     <!-- Theme CSS -->
     <link href="../../Style/site/css/freelancer.min.css" rel="stylesheet">
+    <link href="../../Style/dist/css/custom-style.css" rel="stylesheet">
+    <link href="../../Style/dist/css/all.css" rel="stylesheet">
 
 </head>
 
@@ -24,26 +25,40 @@
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+    <?php   if (isset( $_SESSION['user_id'] )) { ?>
+    <a class="js-scroll-trigger"  style="float: left;color: wheat" href="/logout"><i class="fa fa-sign-out-alt">  خروج </i></a>
+    <?php } else{
+        ?>
+        <a class="js-scroll-trigger"  style="float: left;color: wheat" href="/login"><i class="fa fa-sign-in-alt">  ورود به سایت  </i></a>
+   <?php  }?>
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">آموزش مجوز ها</a>
         <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
+            منو
             <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Portfolio</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">نمونه کارها</a>
                 </li>
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">درباره ی ما</a>
                 </li>
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">تماس با ما</a>
                 </li>
             </ul>
         </div>
     </div>
+    <?php   if (isset( $_SESSION['user_id'] )) { ?>
+        <p class="js-scroll-trigger"  style="float: left;color: wheat;margin-right: 20px" href="#page-top"> خوش آمدید <?php echo $user['full_name']?></p>
+
+        <?php   if ($u->__HasPermission('view_dash')){  ?>
+        <a href="/admin" class="js-scroll-trigger"  style="color: white">    صفحه مدیریت   <i class="fa fa-list"></i></a>
+    <?php }
+    }?>
 </nav>
 
 <!-- Masthead -->
@@ -54,7 +69,7 @@
         <img class="masthead-avatar mb-5" src="../../Style/site/img/avataaars.svg" alt="">
 
         <!-- Masthead Heading -->
-        <h1 class="masthead-heading text-uppercase mb-0">Start Bootstrap</h1>
+        <h1 class="masthead-heading text-uppercase mb-0">شروع آموزش</h1>
 
         <!-- Icon Divider -->
         <div class="divider-custom divider-light">
@@ -66,7 +81,7 @@
         </div>
 
         <!-- Masthead Subheading -->
-        <p class="masthead-subheading font-weight-light mb-0">Graphic Artist - Web Designer - Illustrator</p>
+        <p class="masthead-subheading font-weight-light mb-0">*************************</p>
 
     </div>
 </header>
@@ -76,7 +91,7 @@
     <div class="container">
 
         <!-- Portfolio Section Heading -->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Portfolio</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">نمونه کاره</h2>
 
         <!-- Icon Divider -->
         <div class="divider-custom">
@@ -91,6 +106,7 @@
         <div class="row">
 
             <!-- Portfolio Item 1 -->
+    <?php  if ($u->__HasPermission('portfolioModal1')){ ?>
             <div class="col-md-6 col-lg-4">
                 <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
                     <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
@@ -101,8 +117,10 @@
                     <img class="img-fluid" src="../../Style/site/img/portfolio/cabin.png" alt="">
                 </div>
             </div>
+           <?php } ?>
 
             <!-- Portfolio Item 2 -->
+            <?php  if ($u->__HasPermission('portfolioModal2')){ ?>
             <div class="col-md-6 col-lg-4">
                 <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal2">
                     <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
@@ -113,8 +131,9 @@
                     <img class="img-fluid" src="../../Style/site/img/portfolio/cake.png" alt="">
                 </div>
             </div>
-
+            <?php } ?>
             <!-- Portfolio Item 3 -->
+            <?php  if ($u->__HasPermission('portfolioModal3')){ ?>
             <div class="col-md-6 col-lg-4">
                 <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal3">
                     <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
@@ -125,7 +144,8 @@
                     <img class="img-fluid" src="../../Style/site/img/portfolio/circus.png" alt="">
                 </div>
             </div>
-
+            <?php } ?>
+            <?php  if ($u->__HasPermission('portfolioModal4')){ ?>
             <!-- Portfolio Item 4 -->
             <div class="col-md-6 col-lg-4">
                 <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal4">
@@ -137,7 +157,8 @@
                     <img class="img-fluid" src="../../Style/site/img/portfolio/game.png" alt="">
                 </div>
             </div>
-
+            <?php } ?>
+            <?php  if ($u->__HasPermission('portfolioModal5')){ ?>
             <!-- Portfolio Item 5 -->
             <div class="col-md-6 col-lg-4">
                 <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal5">
@@ -149,7 +170,8 @@
                     <img class="img-fluid" src="../../Style/site/img/portfolio/safe.png" alt="">
                 </div>
             </div>
-
+            <?php } ?>
+            <?php  if ($u->__HasPermission('portfolioModal6')){ ?>
             <!-- Portfolio Item 6 -->
             <div class="col-md-6 col-lg-4">
                 <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal6">
@@ -161,6 +183,7 @@
                     <img class="img-fluid" src="../../Style/site/img/portfolio/submarine.png" alt="">
                 </div>
             </div>
+            <?php } ?>
 
         </div>
         <!-- /.row -->
@@ -173,7 +196,7 @@
     <div class="container">
 
         <!-- About Section Heading -->
-        <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-white">درباره ی ما</h2>
 
         <!-- Icon Divider -->
         <div class="divider-custom divider-light">
@@ -186,21 +209,13 @@
 
         <!-- About Section Content -->
         <div class="row">
-            <div class="col-lg-4 ml-auto">
-                <p class="lead">Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional SASS stylesheets for easy customization.</p>
+            <div class="col-lg-12 ml-auto">
+                <p class="lead" style="text-align:center">ساخت یک وب‌سایت، تنها درباره‌ی موضوعات طراحی ظاهر و برنامه‌نویسی نیست. موضوع مهم دیگر در این باره داشتن محتوای مناسب است. داشتن محتوایی متقاعدکننده یکی از اساسی‌ترین بخش‌ها در بازاریابی درونگرا برای هر کسب و کاری است. بنابراین موضوع مهم پیش روی شما، داشتن محتوایی درخور است که بتواند برای نیازهای وب‌سایت مناسب باشد و شما را به اهداف استراتژی بازاریابی محتوایتان برساند. اگر بخواهیم نقطه‌ی آغازی برای این تولید محتوا تصور کنیم، شاید نگارش صفحه درباره‌ ما مهم‌ترین شروع باشد. اما اولین سوالی که در این مورد برای اغلب افراد پیش می‌آید آن است که چگونه درباره ما بنویسیم؟</p>
             </div>
-            <div class="col-lg-4 mr-auto">
-                <p class="lead">You can create your own custom avatar for the masthead, change the icon in the dividers, and add your email address to the contact form to make it fully functional!</p>
-            </div>
+
         </div>
 
-        <!-- About Section Button -->
-        <div class="text-center mt-4">
-            <a class="btn btn-xl btn-outline-light" href="https://startbootstrap.com/themes/freelancer/">
-                <i class="fas fa-download mr-2"></i>
-                Free Download!
-            </a>
-        </div>
+
 
     </div>
 </section>
@@ -210,7 +225,7 @@
     <div class="container">
 
         <!-- Contact Section Heading -->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Me</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">تماس با ما</h2>
 
         <!-- Icon Divider -->
         <div class="divider-custom">
@@ -228,36 +243,36 @@
                 <form name="sentMessage" id="contactForm" novalidate="novalidate">
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label>Name</label>
-                            <input class="form-control" id="name" type="text" placeholder="Name" required="required" data-validation-required-message="Please enter your name.">
+                            <label>نام</label>
+                            <input class="form-control" id="name" type="text" placeholder="نام" required="required" data-validation-required-message="نام خود را وارد کنید ">
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label>Email Address</label>
-                            <input class="form-control" id="email" type="email" placeholder="Email Address" required="required" data-validation-required-message="Please enter your email address.">
+                            <label>آدرس ایمیل</label>
+                            <input class="form-control" id="email" type="email" placeholder="آدرس ایمیل" required="required" data-validation-required-message="ایمیل نادرست است">
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label>Phone Number</label>
-                            <input class="form-control" id="phone" type="tel" placeholder="Phone Number" required="required" data-validation-required-message="Please enter your phone number.">
+                            <label>شماره تلفن</label>
+                            <input class="form-control" id="phone" type="tel" placeholder="شماره تلفن" required="required" data-validation-required-message="شماره تلفن خود را وارد کنید">
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label>Message</label>
-                            <textarea class="form-control" id="message" rows="5" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
+                            <label>پیام</label>
+                            <textarea class="form-control" id="message" rows="5" placeholder="پیام شما" required="required" data-validation-required-message="پیام خود را وارد کنید"></textarea>
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <br>
                     <div id="success"></div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">Send</button>
+                        <button type="submit" class="btn btn-primary btn-xl" id="sendMessageButton">ارسال</button>
                     </div>
                 </form>
             </div>
@@ -273,14 +288,14 @@
 
             <!-- Footer Location -->
             <div class="col-lg-4 mb-5 mb-lg-0">
-                <h4 class="text-uppercase mb-4">Location</h4>
-                <p class="lead mb-0">2215 John Daniel Drive
-                    <br>Clark, MO 65243</p>
+                <h4 class="text-uppercase mb-4">آدرس</h4>
+                <p class="lead mb-0">سه راه ادبیات
+                    <br>دانشگاه جهاد</p>
             </div>
 
             <!-- Footer Social Icons -->
             <div class="col-lg-4 mb-5 mb-lg-0">
-                <h4 class="text-uppercase mb-4">Around the Web</h4>
+                <h4 class="text-uppercase mb-4">شبکه های اجتماعی</h4>
                 <a class="btn btn-outline-light btn-social mx-1" href="#">
                     <i class="fab fa-fw fa-facebook-f"></i>
                 </a>
@@ -297,9 +312,8 @@
 
             <!-- Footer About Text -->
             <div class="col-lg-4">
-                <h4 class="text-uppercase mb-4">About Freelancer</h4>
-                <p class="lead mb-0">Freelance is a free to use, MIT licensed Bootstrap theme created by
-                    <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+                <h4 class="text-uppercase mb-4">درباره ما</h4>
+                <p class="lead mb-0">شرکت‌های بسیار زیادی وجود دارند که صفحه درباره ما آن‌ها می‌تواند الگوی شما در نوشتن این قسمت باشند.</p>
             </div>
 
         </div>
@@ -336,7 +350,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
                             <!-- Portfolio Modal - Title -->
-                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Log Cabin</h2>
+                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">خانه چوبی</h2>
                             <!-- Icon Divider -->
                             <div class="divider-custom">
                                 <div class="divider-custom-line"></div>
@@ -348,10 +362,10 @@
                             <!-- Portfolio Modal - Image -->
                             <img class="img-fluid rounded mb-5" src="../../Style/site/img/portfolio/cabin.png" alt="">
                             <!-- Portfolio Modal - Text -->
-                            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                            <p class="mb-5">لورم ایپسوم یا طرح‌نما به متنی آزمایشی و بی‌معنی در صنعت چاپ، صفحه‌آرایی و طراحی گرافیک گفته می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه اولیه شکل ظاهری و کلی طرح سفارش گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باشد.لورم ایپسوم یا طرح‌نما به متنی آزمایشی و بی‌معنی در صنعت چاپ، صفحه‌آرایی و طراحی گرافیک گفته می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه اولیه شکل ظاهری و کلی طرح سفارش گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باشد</p>
                             <button class="btn btn-primary" href="#" data-dismiss="modal">
                                 <i class="fas fa-times fa-fw"></i>
-                                Close Window
+                               خروج
                             </button>
                         </div>
                     </div>
@@ -375,7 +389,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
                             <!-- Portfolio Modal - Title -->
-                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Tasty Cake</h2>
+                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">کیک</h2>
                             <!-- Icon Divider -->
                             <div class="divider-custom">
                                 <div class="divider-custom-line"></div>
@@ -387,10 +401,10 @@
                             <!-- Portfolio Modal - Image -->
                             <img class="img-fluid rounded mb-5" src="../../Style/site/img/portfolio/cake.png" alt="">
                             <!-- Portfolio Modal - Text -->
-                            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                            <p class="mb-5">لورم ایپسوم یا طرح‌نما به متنی آزمایشی و بی‌معنی در صنعت چاپ، صفحه‌آرایی و طراحی گرافیک گفته می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه اولیه شکل ظاهری و کلی طرح سفارش گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باشد.لورم ایپسوم یا طرح‌نما به متنی آزمایشی و بی‌معنی در صنعت چاپ، صفحه‌آرایی و طراحی گرافیک گفته می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه اولیه شکل ظاهری و کلی طرح سفارش گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باشد</p>
                             <button class="btn btn-primary" href="#" data-dismiss="modal">
                                 <i class="fas fa-times fa-fw"></i>
-                                Close Window
+                                خروج
                             </button>
                         </div>
                     </div>
@@ -414,7 +428,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
                             <!-- Portfolio Modal - Title -->
-                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Circus Tent</h2>
+                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">چادر</h2>
                             <!-- Icon Divider -->
                             <div class="divider-custom">
                                 <div class="divider-custom-line"></div>
@@ -426,10 +440,10 @@
                             <!-- Portfolio Modal - Image -->
                             <img class="img-fluid rounded mb-5" src="../../Style/site/img/portfolio/circus.png" alt="">
                             <!-- Portfolio Modal - Text -->
-                            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                            <p class="mb-5">لورم ایپسوم یا طرح‌نما به متنی آزمایشی و بی‌معنی در صنعت چاپ، صفحه‌آرایی و طراحی گرافیک گفته می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه اولیه شکل ظاهری و کلی طرح سفارش گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باشد.لورم ایپسوم یا طرح‌نما به متنی آزمایشی و بی‌معنی در صنعت چاپ، صفحه‌آرایی و طراحی گرافیک گفته می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه اولیه شکل ظاهری و کلی طرح سفارش گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باشد</p>
                             <button class="btn btn-primary" href="#" data-dismiss="modal">
                                 <i class="fas fa-times fa-fw"></i>
-                                Close Window
+                                خروج
                             </button>
                         </div>
                     </div>
@@ -453,7 +467,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
                             <!-- Portfolio Modal - Title -->
-                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Controller</h2>
+                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">کنترل</h2>
                             <!-- Icon Divider -->
                             <div class="divider-custom">
                                 <div class="divider-custom-line"></div>
@@ -465,10 +479,10 @@
                             <!-- Portfolio Modal - Image -->
                             <img class="img-fluid rounded mb-5" src="../../Style/site/img/portfolio/game.png" alt="">
                             <!-- Portfolio Modal - Text -->
-                            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                            <p class="mb-5">لورم ایپسوم یا طرح‌نما به متنی آزمایشی و بی‌معنی در صنعت چاپ، صفحه‌آرایی و طراحی گرافیک گفته می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه اولیه شکل ظاهری و کلی طرح سفارش گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باشد.لورم ایپسوم یا طرح‌نما به متنی آزمایشی و بی‌معنی در صنعت چاپ، صفحه‌آرایی و طراحی گرافیک گفته می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه اولیه شکل ظاهری و کلی طرح سفارش گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باشد</p>
                             <button class="btn btn-primary" href="#" data-dismiss="modal">
                                 <i class="fas fa-times fa-fw"></i>
-                                Close Window
+                                خروج
                             </button>
                         </div>
                     </div>
@@ -492,7 +506,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
                             <!-- Portfolio Modal - Title -->
-                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Locked Safe</h2>
+                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">صندوق</h2>
                             <!-- Icon Divider -->
                             <div class="divider-custom">
                                 <div class="divider-custom-line"></div>
@@ -504,10 +518,10 @@
                             <!-- Portfolio Modal - Image -->
                             <img class="img-fluid rounded mb-5" src="../../Style/site/img/portfolio/safe.png" alt="">
                             <!-- Portfolio Modal - Text -->
-                            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                            <p class="mb-5">لورم ایپسوم یا طرح‌نما به متنی آزمایشی و بی‌معنی در صنعت چاپ، صفحه‌آرایی و طراحی گرافیک گفته می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه اولیه شکل ظاهری و کلی طرح سفارش گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باشد.لورم ایپسوم یا طرح‌نما به متنی آزمایشی و بی‌معنی در صنعت چاپ، صفحه‌آرایی و طراحی گرافیک گفته می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه اولیه شکل ظاهری و کلی طرح سفارش گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باشد</p>
                             <button class="btn btn-primary" href="#" data-dismiss="modal">
                                 <i class="fas fa-times fa-fw"></i>
-                                Close Window
+                                خروج
                             </button>
                         </div>
                     </div>
@@ -531,7 +545,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
                             <!-- Portfolio Modal - Title -->
-                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Submarine</h2>
+                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">زیردریایی</h2>
                             <!-- Icon Divider -->
                             <div class="divider-custom">
                                 <div class="divider-custom-line"></div>
@@ -543,10 +557,10 @@
                             <!-- Portfolio Modal - Image -->
                             <img class="img-fluid rounded mb-5" src="../../Style/site/img/portfolio/submarine.png" alt="">
                             <!-- Portfolio Modal - Text -->
-                            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                            <p class="mb-5">لورم ایپسوم یا طرح‌نما به متنی آزمایشی و بی‌معنی در صنعت چاپ، صفحه‌آرایی و طراحی گرافیک گفته می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه اولیه شکل ظاهری و کلی طرح سفارش گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باشد.لورم ایپسوم یا طرح‌نما به متنی آزمایشی و بی‌معنی در صنعت چاپ، صفحه‌آرایی و طراحی گرافیک گفته می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه اولیه شکل ظاهری و کلی طرح سفارش گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باشد</p>
                             <button class="btn btn-primary" href="#" data-dismiss="modal">
                                 <i class="fas fa-times fa-fw"></i>
-                                Close Window
+                                خروج
                             </button>
                         </div>
                     </div>

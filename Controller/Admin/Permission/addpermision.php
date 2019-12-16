@@ -1,29 +1,25 @@
 <?php
-if ($u->__HasPermission("add_roles")){
+if ($u->__HasPermission("add_Permission")){
     if(IsPost()){
         extract($_POST);
         if (isset($close)){
-            redirect('/admin/roles');
+            redirect('/admin/permission');
             return;
         }else{
             if(validation_required([$name,$display_name,$des])) {
-                if (isset($status))
-                    $status=1;
-                else
-                    $status=0;
-                if(Role::insert_role($name,$display_name,$des,$status)=='00000'){
+                if(Permission::insert_Permission($name,$display_name,$des)=='00000'){
                     alert("اوکی شد","دسترسی جدید با موفقیت ثبت شد","success");
-                    redirect('/admin/roles');
+                    redirect('/admin/permission');
                 }else{
                     //view error
                 }
             }else{
-                include_once DIR . '/Views/Admin/roles/addRoles.View.php';
+                include_once DIR . '/Views/Admin/permission/addPermission.View.php';
                 alert("error ","error","warning");
             }
         }
     }else{
-        include_once DIR . '/Views/Admin/roles/addRoles.View.php';
+        include_once DIR . '/Views/Admin/permission/addPermission.View.php';
     }
 }else{
     require DIR . '/Views/Error/403.php';

@@ -1,9 +1,11 @@
 <?php
 
-if ($u->__HasPermission("edit_users_pe")) {
+if ($u->__HasPermission("edit_roles")) {
     if (IsPost()) {
+
         extract( $_POST );
-                if (Permission::edite_roleper( $role, $per)) {
+
+                if (Role::edite_roleuser($user, $roles)) {
                     return true;
                 } else {
                     return false;

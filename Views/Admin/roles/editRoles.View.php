@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>اضافه کردن دسترسی</h1>
+                    <h1>تغییر دسترسی</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-left">
                         <li class="breadcrumb-item"><a href="#">خانه</a></li>
-                        <li class="breadcrumb-item active">صفحه خالی</li>
+                        <li class="breadcrumb-item active">تغییر دسترسی</li>
                     </ol>
                 </div>
             </div>
@@ -156,8 +156,8 @@
             }
         }).done(function(e) {
             Swal.fire(
-                'حذف',
-                'خیالت راحت شد حذف شد',
+                'تغییر کرد ',
+                'سطح دسترسی ها با موفقیت تغییر کرد',
                 'success'
             ).then((result)=>{
                 document.location.reload(true);
